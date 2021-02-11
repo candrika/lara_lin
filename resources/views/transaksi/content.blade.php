@@ -27,9 +27,9 @@
                 		@foreach($data_tables as $key => $v)
                 		<tr>
                 			<td>{{$v->category_name}}</td>
-                            <td>{{$v->category_description}}</td>
+                            <td>{{$v->jenis_transaksi}}</td>
                             <td>{{$v->transaction_description}}</td>
-                			<td><a href="#" class="btn btn-warning btn-sm edit" id="edit_{{$title_content}}" data-edit-id="{{$v->category_id}}"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a href="#" class="btn btn-danger btn-sm hapus" id="hapus_{{$title_content}}" data-hapus-id="{{$v->category_id}}"><i class="fa fa-trash"></i></a></td>
+                			<td><a href="#" class="btn btn-warning btn-sm edit" id="edit_{{$title_content}}" data-edit-id="{{$v->transaction_id}}"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;<a href="#" class="btn btn-danger btn-sm hapus" id="hapus_{{$title_content}}" data-hapus-id="{{$v->transaction_id}}"><i class="fa fa-trash"></i></a></td>
                 		</tr>                		
                 		@endforeach
                 	@endif
@@ -104,7 +104,7 @@
         });
 
         $('#edit_<?=$title_content?>').click(function(e){
-        	
+        	console.log($(this).data('edit-id'));
         	e.preventDefault(e);
         	$('.preloader-backdrop').show();
         	$.get('/trx/form/edit/'+$(this).data('edit-id')).done(function(response){

@@ -13,7 +13,7 @@
     <link href="v3_assets/css/main.min.css" rel="stylesheet" />
     <link href="v3_assets/css/datatables.min.css" rel="stylesheet" />
     <link href="v3_assets/jqueryUI/jquery-ui.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="v3_assets/css/select2.min.css"/>
+    
     <style>
     .visitors-table tbody tr td:last-child {
         display: flex;
@@ -197,15 +197,15 @@
                         <a href="javascript:;"><i class="sidebar-item-icon fa fa-balance-scale"></i><span class="nav-label">Category</span><i class="fa fa-angle-left arrow"></i></a>
                         <ul class="nav-2-level collapse">
                             <li>
-                                <a href="" id="pemasukan">Pemasukan</a>
+                                <a href="#" id="pemasukan">Pemasukan</a>
                             </li>
                             <li>
-                                <a href="" id="pengeluaran">Pengeluaran</a>
+                                <a href="#" id="pengeluaran">Pengeluaran</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="/"><i class="sidebar-item-icon fa fa-money"></i>
+                        <a href="#"><i class="sidebar-item-icon fa fa-money"></i>
                             <span class="nav-label" id="transaksi">Transaksi</span>
                         </a>
                     </li>
@@ -228,7 +228,6 @@
     <div class="preloader-backdrop">
         <div class="page-preloader">Loading</div>
     </div>
-    <script src="v3_assets/js/select2.min.js" type="text/javascript"></script>
     <script src="v3_assets/js/jquery.min.js" type="text/javascript"></script>
     <script src="v3_assets/jqueryUI/jquery-ui.min.js" type="text/javascript"></script>
     <script src="v3_assets/js/datatables.min.js" type="text/javascript"></script>

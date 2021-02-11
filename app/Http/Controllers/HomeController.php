@@ -30,7 +30,7 @@ class HomeController extends Controller
     	$hari = ['monday','tuesday','wednesday','thursday','friday','saturday','sunday'];
 
     	$total_pengeluaran = 0;
-    	$total_peemasukan  = 0;
+    	$total_pemasukan  = 0;
 
     	$total_pemasukan_perminggu = 0;
     	$total_pengeluaran_perminggu = 0;
@@ -47,17 +47,17 @@ class HomeController extends Controller
     			
     			$saldo_update = $total_pemasukan+$total_pengeluaran;
 
-
-    			$diff_time = diff_time($value->created_at,$this->current_time);
-    			$day_count = $diff_time->format("%a");
+                // echo $this
+    			// $diff_time = date_diff($value->created_at,$this->current_time);
+    			// $day_count = $diff_time->format("%a");
     			
-    			if($day_count <= 7){
+    			// if($day_count <= 7){
     				$total_pemasukan_perminggu +=$value->pemasukan;
     				$total_pengeluaran_perminggu +=$value->pemasukan;
-    				
+    				// 
     				$data_saldo[$i] = $value['pemasukan'];
     				$data_saldo[$i] = $value['pengeluaran'];
-    			}
+    			// }
 
     			$i++;
     			// 

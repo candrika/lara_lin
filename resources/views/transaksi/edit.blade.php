@@ -21,9 +21,9 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label category_name">Nama Kategori</label>
                     <div class="col-sm-8">
-                        <select class="form-control" name="category_id">
-                            <option></option>    
-                            @foreach($category_name as $key =>$name)  
+                        <select class="form-control cat_id" name="category_id">
+                            <option value="{{$transaction->category_id}}" selected>{{$transaction->category_name}}</option>    
+                            @foreach($category as $key =>$name)  
                             <option value="{{$name->category_id}}">{{$name->category_name}}</option>    
                             @endforeach
                         </select>    
@@ -36,7 +36,7 @@
                     <label class="col-sm-2 col-form-label">Jenis Kategori</label>
                     <div class="col-sm-8">
                         <select class="form-control category_type_id" type="text" name="category_type_id" readonly="true">
-                           <!--  <option></option> -->
+                        <option value="{{$transaction->category_type_id}}">{{$transaction->jenis_transaksi}}</option>
                         </select>  
                         @if($errors->has('name'))
                           <div class="text-danger">{{ $errors->first('name')}}</div>  
@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nominal</label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" name="amount" align="right"/>
+                        <input class="form-control" type="text" name="amount" align="right" value="{{$transaction->amount}}" />
                         @if($errors->has('description'))
                           <div class="text-danger">{{ $errors->first('description')}}</div>  
                         @endif
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-8">
-                        <Textarea class="form-control" type="text" name="description"></textarea>
+                        <Textarea class="form-control" type="text" name="description">{{$transaction->transaction_description}}</textarea>
                         @if($errors->has('description'))
                           <div class="text-danger">{{ $errors->first('description')}}</div>  
                         @endif
@@ -97,6 +97,27 @@
             })
 
         })
+
+        $('.cat_id').change(function(){
+
+            $.ajax({
+                method:'GET',
+                url:'/trx/category_type?id='+$('.cat_id').val(),
+                // {
+                //     id:$('.cat_id').val(),
+                // },
+                success:function(response){
+                    console.log(response.data[0]);
+                    var obj = response.data[0];
+                    $('.category_type_id').html('<option value='+obj.category_type_id+' seleted>'+obj.jenis_transaksi+'</option>');
+                },
+                failure(response){
+                    console.log($('.cat_id').val())
+
+                }
+            })
+
+        });
 
         $('#<?=$title_content?>').submit(function(e){
             e.preventDefault();

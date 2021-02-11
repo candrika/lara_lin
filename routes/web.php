@@ -64,3 +64,5 @@ Route::post('/trx/add','App\Http\Controllers\TranscationController@add');
 Route::post('/trx/update','App\Http\Controllers\TranscationController@update');
 //delete data
 Route::get('/trx/delete/{id}','App\Http\Controllers\TranscationController@delete');
+//get data category_type_id
+Route::get('/trx/category_type','App\Http\Controllers\TranscationController@category_type');
