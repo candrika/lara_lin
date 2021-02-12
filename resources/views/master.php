@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <title>LaraLin | Dashboard</title>
     <link rel="icon" type="image/png" sizes="16x16" href="https://laravel.com/img/favicon/favicon-16x16.png">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css" integrity="sha512-rxThY3LYIfYsVCWPCW9dB0k+e3RZB39f23ylUYTEuZMDrN/vRqLdaCBo/FbvVT6uC2r0ObfPzotsfKF9Qc5W5g==" crossorigin="anonymous" /> -->
+    <!--<link href="v3_assets/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />-->
     <link href="v3_assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="v3_assets/css/font-awesome.min.css" rel="stylesheet" />
     <link href="v3_assets/css/themify-icons.css" rel="stylesheet" />
     <link href="v3_assets/css/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
     <link href="v3_assets/css/main.min.css" rel="stylesheet" />
     <link href="v3_assets/css/datatables.min.css" rel="stylesheet" />
-    <link href="v3_assets/jqueryUI/jquery-ui.min.css" rel="stylesheet" />
-    
+    <!--<link href="v3_assets/jqueryUI/jquery-ui.min.css" rel="stylesheet" />-->
     <style>
     .visitors-table tbody tr td:last-child {
         display: flex;
@@ -33,7 +34,12 @@
     <div class="page-wrapper">
       <header class="header">
             <div class="page-brand">
-                <a class="link" href="/"><img src="https://laravel.com/img/logomark.min.svg" class="brand" style="height: 43px;">&nbsp;&nbsp;LARALIN
+                <a class="link" href="/">
+                    <span class="brand">
+                        <img src="https://laravel.com/img/logomark.min.svg" style="height: 43px;">
+                        <span class="brand-tip">&nbsp;&nbsp;LARALIN</span>
+                    </span>
+                    <span class="brand-mini"><img src="https://laravel.com/img/logomark.min.svg" style="height: 43px;"></span>
                 </a>
             </div>
             <div class="flexbox flex-1">
@@ -228,8 +234,10 @@
     <div class="preloader-backdrop">
         <div class="page-preloader">Loading</div>
     </div>
+    
+    <!--<script src="v3_assets/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>-->
     <script src="v3_assets/js/jquery.min.js" type="text/javascript"></script>
-    <script src="v3_assets/jqueryUI/jquery-ui.min.js" type="text/javascript"></script>
+    <!--<script src="v3_assets/jqueryUI/jquery-ui.min.js" type="text/javascript"></script>-->
     <script src="v3_assets/js/datatables.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="v3_assets/js/bootstrap.min.js" type="text/javascript"></script>

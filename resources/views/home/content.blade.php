@@ -79,7 +79,7 @@
                                             <div class="text-muted">WEEKLY INCOME</div>
                                             <div>
                                                 @if($saldo!=null)
-                                                <span class="h2 m-0">Rp. {{$total_pemasukan_perminggu}}</span>
+                                                <span class="h2 m-0">Rp. {{$saldo['total_pemasukan_perminggu']}}</span>
                                                 @else
                                                 <span class="h2 m-0"></span>
                                                 @endif
@@ -90,7 +90,7 @@
                                             <div class="text-muted">WEEKLY OUTCOME</div>
                                             <div>
                                                  @if($saldo!=null)
-                                                <span class="h2 m-0">Rp. {{$total_pengeluaran_perminggu}}</span>
+                                                <span class="h2 m-0">Rp. {{$saldo['total_pengeluaran_perminggu']}}</span>
                                                 @else
                                                 <span class="h2 m-0"></span>
                                                 @endif

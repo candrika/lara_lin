@@ -5,21 +5,55 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+// use Carbon\Carbon;
 use App\Models\Transaction;
 
 class TranscationController extends Controller
 {
     //
-    public function index(){
-    	$transaction = Transaction::Select(
-    							 'table_transaction.transaction_id','table_category.category_name',
-    							 'table_transaction.transaction_description',
-    							 DB::raw('(CASE WHEN table_category.category_type_id = 1 THEN'."'Pemasukan'".
-    							 'WHEN table_category.category_type_id = 2 THEN'."'Pengeluaran'".' 
-    							 END) AS jenis_transaksi'))
-    							 ->join('table_category','table_category.category_id','=','table_transaction.category_id')
-    							 ->get();
-        // print_r($transaction);                         
+    public function __construct(){
+        DB::enableQueryLog();
+    }
+
+    public function index(Request $request){
+
+        // echo $request->startdate;
+        if($request->startdate!='' && $request->enddate!=''){
+            
+            $sd_arr = str_replace('/','-', $request->startdate);
+            $nd_arr = str_replace('/','-',$request->all()['enddate']);
+
+            $start  = date("Y-m-d",strtotime($sd_arr)). ' 00:00:00';
+            $end    = date("Y-m-d",strtotime($nd_arr)). ' 23:59:59';
+           
+            // echo $request->$nd_arr;
+
+            $transaction = DB::table('table_transaction')->Select(
+                                     'table_transaction.transaction_id','table_category.category_name',
+                                     'table_transaction.transaction_description',
+                                     DB::raw('(CASE WHEN table_category.category_type_id = 1 THEN'."'Pemasukan'".
+                                     'WHEN table_category.category_type_id = 2 THEN'."'Pengeluaran'".' 
+                                     END) AS jenis_transaksi'),'table_transaction.created_at')
+                                     ->join('table_category','table_category.category_id','=','table_transaction.category_id')
+                                     ->whereBetween('table_transaction.created_at', [$start,$end])
+                                     ->orderBy('table_transaction.transaction_id','desc')
+                                     ->get();
+            // print_r($transaction);
+            // $query = DB::getQueryLog();                         
+            // $lastQuery = end($query);
+            // dd($lastQuery);                        
+        }else{
+        	$transaction = Transaction::Select(
+        							 'table_transaction.transaction_id','table_category.category_name',
+        							 'table_transaction.transaction_description',
+        							 DB::raw('(CASE WHEN table_category.category_type_id = 1 THEN'."'Pemasukan'".
+        							 'WHEN table_category.category_type_id = 2 THEN'."'Pengeluaran'".' 
+        							 END) AS jenis_transaksi'))
+        							 ->join('table_category','table_category.category_id','=','table_transaction.category_id')
+        							 ->orderBy('table_transaction.transaction_id','desc')
+                                     ->get();
+            // print_r($transaction);
+        }                         
     	return view('transaksi/content',['title_content'=>'Pemasukan','data_tables'=>$transaction]);
     }
 
@@ -83,7 +117,7 @@ class TranscationController extends Controller
     public function edit($id){
     	
     	$category    = DB::table('table_category')->get();
-    	$array_trx = [];
+    	
         $transaction = Transaction::Select(
                                  'table_transaction.category_id as category_id',
                                  'table_category.category_name',
@@ -96,6 +130,7 @@ class TranscationController extends Controller
                                  END) AS jenis_transaksi','table_category.category_type_id'))
                                  ->join('table_category','table_category.category_id','=','table_transaction.category_id')
                                  ->where('table_transaction.transaction_id',$id)
+                                 // ->
                                  ->first();
         // print_r($transaction['attributes:protected']);                         
         return view('transaksi/edit',['title_content'=>'Edit','transaction'=>$transaction,'category'=>$category]);
@@ -103,18 +138,38 @@ class TranscationController extends Controller
 
     public function update(Request $request){
 
-    	$this->validate($request,[
-    		'id'=>'required',
-    		'name'=>'required',
-    		'description'=>'required'
-    	]);
-    	
-    	$category =Category::Where('category_id',$request->id)
+    	// $this->validate($request,[
+    	// 	'category_id'=>'required',
+     //        'category_type_id'=>'required',
+     //        'amount'=>'required',
+    	// 	'description'=>'required'
+    	// ]);
+        // print_r($request);
+        
+    	Transaction::Where('transaction_id',$request->id)
     	->update([
-    		"category_name"=>$request->name,
-	    	"category_description"=>$request->description,
+    		"category_id"=>$request->category_id,
+            "amount"=>$request->amount,
+	    	"transaction_description"=>$request->description,
     		"updated_at"=>date('Y-m-d H:m')
     	]);
+
+        //update saldo
+        if($request->category_type_id==1){
+
+            DB::Where('transaction_id',$request->id)->update([
+                'pemasukan'=>$request->amount,
+                'update_at'=>date('Y-m-d H:m'),
+            ]);
+        }
+
+        if($request->category_type_id==2){
+
+            DB::Where('transaction_id',$request->id)->update([
+                'pengeluaran'=>$request->amount,
+                'update_at'=>date('Y-m-d H:m'),
+            ]);
+        }
 
     	return response()->json(['status'=>true,'message'=>'Data berhasil diupate']);
     }

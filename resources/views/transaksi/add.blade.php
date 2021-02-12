@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nominal</label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" name="amount" align="right"/>
+                        <input class="form-control" type="text" name="amount" align="right" autocomplete="off"/>
                         @if($errors->has('description'))
                           <div class="text-danger">{{ $errors->first('description')}}</div>  
                         @endif
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-8">
-                        <Textarea class="form-control" type="text" name="description"></textarea>
+                        <Textarea class="form-control" type="text" name="description" autocomplete="off"></textarea>
                         @if($errors->has('description'))
                           <div class="text-danger">{{ $errors->first('description')}}</div>  
                         @endif

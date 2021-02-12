@@ -50,14 +50,26 @@ class HomeController extends Controller
                 // echo $this
     			// $diff_time = date_diff($value->created_at,$this->current_time);
     			// $day_count = $diff_time->format("%a");
+    			if($value->created_at!=null){
+                    
+                    $created_at     = date_create($value->created_at); 
+                    $current_time   = date_create($this->current_time);
+
+                    
+                    $diff_time  = date_diff($created_at,$current_time);
+                    // echo $diff_time->days;
+                    $day_count  = $diff_time->format("%a");
+                    // echo $day_count;
+
+                    if($day_count <= 7){
+                        $total_pemasukan_perminggu +=$value->pemasukan;
+                        $total_pengeluaran_perminggu +=$value->pemasukan;
+                        // 
+                        $data_saldo[$i] = $value['pemasukan'];
+                        $data_saldo[$i] = $value['pengeluaran'];
+                    }
+                }
     			
-    			// if($day_count <= 7){
-    				$total_pemasukan_perminggu +=$value->pemasukan;
-    				$total_pengeluaran_perminggu +=$value->pemasukan;
-    				// 
-    				$data_saldo[$i] = $value['pemasukan'];
-    				$data_saldo[$i] = $value['pengeluaran'];
-    			// }
 
     			$i++;
     			// 
@@ -75,6 +87,8 @@ class HomeController extends Controller
     		$arr;
     	}
 
+
+        // print_r($arr);
     	
     	
     	return view('home/content',['saldo'=>$arr,'data'=>$data_saldo,'labels'=>$hari]);

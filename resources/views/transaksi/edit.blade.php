@@ -19,6 +19,7 @@
             <form class="form-horizontal" id="{{$title_content}}" method="post" novalidate="novalidate">
                 {{csrf_field()}}
                 <div class="form-group row">
+                    <input type="hidden" name="id" value="{{$transaction->transaction_id}}"/>
                     <label class="col-sm-2 col-form-label category_name">Nama Kategori</label>
                     <div class="col-sm-8">
                         <select class="form-control cat_id" name="category_id">
@@ -27,7 +28,7 @@
                             <option value="{{$name->category_id}}">{{$name->category_name}}</option>    
                             @endforeach
                         </select>    
-                        @if($errors->has('name'))
+                        @if($errors->has('category_id'))
                           <div class="text-danger">{{ $errors->first('name')}}</div>  
                         @endif
                     </div>
@@ -38,24 +39,24 @@
                         <select class="form-control category_type_id" type="text" name="category_type_id" readonly="true">
                         <option value="{{$transaction->category_type_id}}">{{$transaction->jenis_transaksi}}</option>
                         </select>  
-                        @if($errors->has('name'))
-                          <div class="text-danger">{{ $errors->first('name')}}</div>  
+                        @if($errors->has('category_type_id'))
+                          <div class="text-danger">{{ $errors->first('category_type_id')}}</div>  
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Nominal</label>
                     <div class="col-sm-8">
-                        <input class="form-control" type="text" name="amount" align="right" value="{{$transaction->amount}}" />
-                        @if($errors->has('description'))
-                          <div class="text-danger">{{ $errors->first('description')}}</div>  
+                        <input class="form-control" type="text" name="amount" align="right" value="{{$transaction->amount}}" autocomplete="off"/>
+                        @if($errors->has('amount'))
+                          <div class="text-danger">{{ $errors->first('amount')}}</div>  
                         @endif
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Deskripsi</label>
                     <div class="col-sm-8">
-                        <Textarea class="form-control" type="text" name="description">{{$transaction->transaction_description}}</textarea>
+                        <Textarea class="form-control" type="text" name="description" autocomplete="off">{{$transaction->transaction_description}}</textarea>
                         @if($errors->has('description'))
                           <div class="text-danger">{{ $errors->first('description')}}</div>  
                         @endif
