@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
-{	
+{
 	protected $table      = "table_transaction";
 	protected $primaryKey = "transaction_id";
 
-	protected $fillable   =[
+	protected $fillable   = [
 		'category_id',
-  		'transaction_description',
-  		'created_at',
-  		'updated_at',
+		'transaction_description',
+		'created_at',
+		'updated_at',
 	];
 
-    use HasFactory;
+	use HasFactory;
 }

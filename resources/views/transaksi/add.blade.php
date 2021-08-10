@@ -75,17 +75,17 @@
 </div>
     <script type="text/javascript">
 
-        $('#success_msg').dialog({
-            autoOpen:false,
-            show:{
-                effect:"blind",
-                duration:1000
-            },
-            hide:{
-                effect:"explode",
-                duration:1000
-            }
-        })
+        // $('#success_msg').dialog({
+        //     autoOpen:false,
+        //     show:{
+        //         effect:"blind",
+        //         duration:1000
+        //     },
+        //     hide:{
+        //         effect:"explode",
+        //         duration:1000
+        //     }
+        // })
 
         $('.cat_id').change(function(){
 

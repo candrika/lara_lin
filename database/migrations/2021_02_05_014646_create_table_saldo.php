@@ -17,7 +17,8 @@ class CreateTableSaldo extends Migration
             $table->increments('saldo_id');
             $table->decimal('pemasukan',$precition=12,$scalar=2);
             $table->decimal('pengeluaran',$precition=12,$scalar=2);
-            $table->char('saldo_description',100);
+            $table->integer('transaction_id');
+            $table->text('saldo_description');
             $table->timestamps();
         });
     }

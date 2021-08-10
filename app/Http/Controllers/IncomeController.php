@@ -11,7 +11,7 @@ class IncomeController extends Controller
     //
     public function index(){
     	$category = Category::Where('category_type_id',1)->get();
-    	return view('pemasukan/content',['title_content'=>'Pemasukan','data_tables'=>$category]);
+    	return view('pemasukan/content',['title_content'=>'Pemasukan','data_tables'=>$category,'title'=>'Pendapatan']);
     }
 
     public function input(){

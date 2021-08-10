@@ -54,27 +54,27 @@
 </div>
     <script type="text/javascript">
 
-        $('#success_msg').dialog({
-            autoOpen:false,
-            show:{
-                effect:"blind",
-                duration:1000
-            },
-            hide:{
-                effect:"explode",
-                duration:1000
-            }
-        })
+        // $('#success_msg').dialog({
+        //     autoOpen:false,
+        //     show:{
+        //         effect:"blind",
+        //         duration:1000
+        //     },
+        //     hide:{
+        //         effect:"explode",
+        //         duration:1000
+        //     }
+        // })
 
-        $(".cancel").click(function(e){
-            e.preventDefault();
-            $('.preloader-backdrop').show();
-            $.get('/income/page').done(function(response){
-                $('.preloader-backdrop').hide();
-                $('.content-wrapper').html(" ");
-                $('.content-wrapper').html(response);
-            })
-        })
+        // $(".cancel").click(function(e){
+        //     e.preventDefault();
+        //     $('.preloader-backdrop').show();
+        //     $.get('/income/page').done(function(response){
+        //         $('.preloader-backdrop').hide();
+        //         $('.content-wrapper').html(" ");
+        //         $('.content-wrapper').html(response);
+        //     })
+        // })
 
         $('#<?=$title_content?>').submit(function(e){
             e.preventDefault(e);

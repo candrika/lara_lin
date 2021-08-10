@@ -11,7 +11,7 @@ class OutcomeController extends Controller
     //
     public function index(){
     	$category = Category::where('category_type_id',2)->get();
-    	return view('pengeluaran/content',['title_content'=>'Pengeluaran','data_tables'=>$category]);
+    	return view('pengeluaran/content',['title_content'=>'Pengeluaran','data_tables'=>$category,'title'=>'Pengluaran']);
     }
 
     public function input(){

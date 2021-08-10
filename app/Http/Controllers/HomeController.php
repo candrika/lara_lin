@@ -16,7 +16,7 @@ class HomeController extends Controller
 	}
 
     public function index(){
-    	return view('master');
+    	return view('master',['title'=>'Dashboard']);
     }
 
     public function saldo(){
@@ -43,7 +43,7 @@ class HomeController extends Controller
     		foreach ($balance as $key => $value) {
     			# code...
     			$total_pemasukan +=$value->pemasukan;
-    			$total_pengeluaran +=$value->pemasukan;
+    			$total_pengeluaran +=$value->pengluaran;
     			
     			$saldo_update = $total_pemasukan+$total_pengeluaran;
 
@@ -63,7 +63,7 @@ class HomeController extends Controller
 
                     if($day_count <= 7){
                         $total_pemasukan_perminggu +=$value->pemasukan;
-                        $total_pengeluaran_perminggu +=$value->pemasukan;
+                        $total_pengeluaran_perminggu +=$value->pengluaran;
                         // 
                         $data_saldo[$i] = $value['pemasukan'];
                         $data_saldo[$i] = $value['pengeluaran'];
@@ -78,9 +78,11 @@ class HomeController extends Controller
     		$arr = [
     			'total_pemasukan_perminggu'=>number_format($total_pemasukan_perminggu),
     			'total_pengeluaran_perminggu'=>number_format($total_pengeluaran_perminggu),
-    			'total_pemasukan'=>number_format($total_pengeluaran),
+    			'total_pemasukan'=>number_format($total_pemasukan),
     			'total_pengeluaran'=>number_format($total_pengeluaran),
-    			'saldo_update'=>number_format($saldo_update)
+    			'saldo_update'=>number_format($saldo_update),
+				// 'total_pemasukan_prosentage'=>($total_pemasukan/100),
+				// 'total_pengeluaran_prosentage'=>($total_pengeluaran/100)
     		];
 
     	}else{
